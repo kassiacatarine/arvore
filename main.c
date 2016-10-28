@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "arvore.c"
 #include "arvore.h"
 
 /*
@@ -10,17 +11,17 @@
  *   pos ordem = 33 45 44 64 77 66 55
  *   pre ordem = 55 44 33 45 66 64 77
  *   em largura = 55 44 66 33 45 64 77
- *   
+ *
  *
  *   rotR (55) =>
- *             
+ *
  *              44
  *          33     55
  *               45  66
  *                  64 77
  *
  *   em largura: 44 33 55 45 66 64 77
- *   
+ *
  */
 int main () {
   ARVORE a = novaArvore();
@@ -46,18 +47,18 @@ int main () {
   printf ("\n");
 
   x = busca(a, 45);
-  if (x == NULL) 
+  if (x == NULL)
     printf ("Nao achou\n");
   else
     printf ("Achou %d \n", x->key);
-  
+
 
   x = busca(a, 1);
-  if (x == NULL) 
+  if (x == NULL)
     printf ("Nao achou\n");
-  else 
+  else
     printf ("Achou %d \n", x->key);
- 
+
 
    x = busca(a, 55);
    a->raiz = rotR(a, x);
@@ -75,5 +76,20 @@ int main () {
    imprimeEmLargura(a);
    printf("\n");
 
-  return 0;
+   printf("Remove o 46 que possui 2 filhos\n");
+   remover (a, 46);
+   imprimeEmLargura(a);
+   printf("\n");
+
+   printf("Remove o 77 que nao possui filhos\n");
+   remover (a, 77);
+   imprimeEmLargura(a);
+   printf("\n");
+
+   printf("Remove o 66 que possui 1 filho\n");
+   //remover (a, 66);
+   imprimeEmLargura(a);
+   printf("\n");
+
+   return 0;
 }
